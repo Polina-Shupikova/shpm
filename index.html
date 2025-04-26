@@ -4,81 +4,415 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Шупикова Полина</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --dark: #292f36;
+            --light: #f7fff7;
+            --accent: #ffe66d;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
         }
+
         .container {
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 650px;
+            margin: 30px auto;
             background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s ease;
         }
+
+        .container:hover {
+            transform: translateY(-10px);
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
         h1 {
-            color: #444;
+            font-family: 'Playfair Display', serif;
+            color: var(--dark);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
         }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        .photo-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 30px auto;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
         .photo {
-            width: 150px;
-            height: 150px;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            margin: 20px auto;
-            display: block;
-            border: 3px solid #ddd;
+            border: 5px solid white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
         }
+
+        .photo-container:hover .photo {
+            transform: rotateY(20deg) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: 300;
+            position: relative;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
         .links {
-            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 40px;
         }
+
         a {
-            display: inline-block;
-            margin: 10px;
-            padding: 10px 20px;
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
             text-decoration: none;
             color: white;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
         }
+
+        a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        a:hover::before {
+            left: 100%;
+        }
+
         .telegram {
-            background-color: #0088cc;
+            background: linear-gradient(45deg, #0088cc, #00aced);
         }
+
         .instagram {
             background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+            background-size: 400% 400%;
+            animation: gradientBG 8s ease infinite;
         }
+
         .github {
-            background-color: #333;
+            background: linear-gradient(45deg, #333, #555);
         }
+
         .TgChannel {
-          background-color: #0088cc;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
         }
-        a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+
+        .social-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
         }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            border-radius: 20px;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(78, 205, 196, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+            }
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 107, 107, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease;
+            z-index: 9999;
+            mix-blend-mode: multiply;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            a {
+                width: 80%;
+                justify-content: center;
+            }
+
+        }
+        .big-brother-btn {
+    display: block;
+    margin: 15px auto 0;
+    padding: 8px 20px;
+    background-color: var(--dark);
+    color: var(--light);
+    border: none;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.big-brother-btn:hover {
+    background-color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.big-brother-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: 0.5s;
+}
+
+.big-brother-btn:hover::after {
+    left: 100%;
+}
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="cursor-follower"></div>
+
+    <div class="container animate__animated animate__fadeIn">
+        <div class="floating-elements">
+            <div class="floating-element" style="width: 100px; height: 100px; top: 20%; left: 10%;"></div>
+            <div class="floating-element" style="width: 150px; height: 150px; top: 60%; left: 70%;"></div>
+            <div class="floating-element" style="width: 80px; height: 80px; top: 80%; left: 30%;"></div>
+        </div>
+
         <h1>Шупикова Полина</h1>
 
-        <!-- Замените src на URL вашего фото -->
-        <img src="https://monocler.ru/wp-content/uploads/2016/07/Orwell_Big-Brother.jpg" class="photo">
-        <font size='4'>While big brother watching you, </font size>
-        <p><font size='4'>observe my social madia:</font size></p>
+        <div class="photo-container" id="photoContainer">
+            <img src="https://monocler.ru/wp-content/uploads/2016/07/Orwell_Big-Brother.jpg" class="photo" id="profilePhoto" alt="Фото Полины">
+        </div>
+        <button class="big-brother-btn" id="bigBrotherBtn">tap to the big brother</button>
+
+        <p class="tagline">While big brother watching you, observe my social media:</p>
+
         <div class="links">
-            <a href="https://t.me/goluboglazaya_yuristka" class="telegram" target="_blank">Telegram</a>
-            <a href="https://www.instagram.com/polina___1808?igsh=N2szYmI1dXQzZjNx&utm_source=qr" class="instagram" target="_blank">Instagram</a>
-            <a href="https://github.com/Polina-Shupikova" class="github" target="_blank">GitHub</a>
-            <a href="https://t.me/vertihvosstka" class="TgChannel" target="_blank">TgChannel🌺🦩</a>
+            <a href="https://t.me/goluboglazaya_yuristka" class="telegram" target="_blank">
+                <span class="social-icon">✉️</span> Telegram
+            </a>
+            <a href="https://www.instagram.com/polina___1808?igsh=N2szYmI1dXQzZjNx&utm_source=qr" class="instagram" target="_blank">
+                <span class="social-icon">📸</span> Instagram
+            </a>
+            <a href="https://github.com/Polina-Shupikova" class="github" target="_blank">
+                <span class="social-icon">💻</span> GitHub
+            </a>
+            <a href="https://t.me/vertihvosstka" class="TgChannel" target="_blank">
+                <span class="social-icon">🌺</span> TgChannel
+            </a>
         </div>
     </div>
+
+    <script>
+        // Массив с URL фотографий для переключения
+        const photos = [
+            "https://monocler.ru/wp-content/uploads/2016/07/Orwell_Big-Brother.jpg",
+            "photo_5217519068976902464_y.jpg", // Замените на реальные URL
+            "photo_5217519068976902465_y.jpg",
+            "photo_5217519068976902468_y.jpg"
+        ];
+
+        let currentPhotoIndex = 0;
+        const profilePhoto = document.getElementById('profilePhoto');
+        const photoContainer = document.getElementById('photoContainer');
+
+        // Функция для смены фото
+        function changePhoto() {
+            currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+            profilePhoto.style.opacity = 0;
+
+            setTimeout(() => {
+                profilePhoto.src = photos[currentPhotoIndex];
+                profilePhoto.style.opacity = 1;
+                photoContainer.classList.add('animate__animated', 'animate__pulse');
+
+                setTimeout(() => {
+                    photoContainer.classList.remove('animate__animated', 'animate__pulse');
+                }, 1000);
+            }, 300);
+        }
+
+        // Обработчик клика по фото
+        photoContainer.addEventListener('click', changePhoto);
+
+        // Анимация следящего курсора
+        const cursorFollower = document.querySelector('.cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursorFollower.style.left = e.clientX + 'px';
+            cursorFollower.style.top = e.clientY + 'px';
+        });
+
+        // Анимация при наведении на ссылки
+        const links = document.querySelectorAll('a');
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(3)';
+                cursorFollower.style.backgroundColor = 'rgba(255, 230, 109, 0.3)';
+            });
+
+            link.addEventListener('mouseleave', () => {
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorFollower.style.backgroundColor = 'rgba(255, 107, 107, 0.5)';
+            });
+        });
+
+        // Создаем плавающие элементы динамически
+        const floatingContainer = document.querySelector('.floating-elements');
+
+        for (let i = 0; i < 5; i++) {
+            const element = document.createElement('div');
+            element.classList.add('floating-element');
+
+            const size = Math.random() * 100 + 50;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            const delay = Math.random() * 15;
+            const duration = Math.random() * 20 + 10;
+
+            element.style.width = `${size}px`;
+            element.style.height = `${size}px`;
+            element.style.top = `${posY}%`;
+            element.style.left = `${posX}%`;
+            element.style.animationDelay = `${delay}s`;
+            element.style.animationDuration = `${duration}s`;
+            element.style.opacity = Math.random() * 0.4 + 0.1;
+
+            floatingContainer.appendChild(element);
+        }
+
+    </script>
 </body>
 </html>
-
